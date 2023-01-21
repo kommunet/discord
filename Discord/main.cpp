@@ -50,8 +50,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		DispatchMessage(&msg);
 	}
 
-	FreeLibrary(hResDLL);
-
 	return (int) msg.wParam;
 }
 
@@ -105,6 +103,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_DESTROY:
 		DeleteObject(hLoginBkg);
+		FreeLibrary(hResDLL);
 
 		PostQuitMessage(0);
 

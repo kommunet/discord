@@ -52,7 +52,7 @@ END
 // Bitmap
 //
 
-IDB_LOGIN_BKG           BITMAP                  "background.bmp"
+IDB_LOGIN_BKG           BITMAP                  "discord_default.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

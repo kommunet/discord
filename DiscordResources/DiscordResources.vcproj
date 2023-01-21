@@ -139,6 +139,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				ResourceOnlyDLL="true"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -192,7 +193,11 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\background.bmp"
+				RelativePath=".\discord_default.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\OneDrive\Pictures\discord\discord_default.png"
 				>
 			</File>
 			<File
