@@ -24,9 +24,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
- 	// TODO: Place code here.
-	MSG msg;
-
 	// Initialize global strings
 	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadString(hInstance, IDC_DISCORD, szWindowClass, MAX_LOADSTRING);
@@ -40,6 +37,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	}
 
 	// Main message loop:
+	
+	MSG msg;
+
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);
