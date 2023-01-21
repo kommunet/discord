@@ -2,12 +2,9 @@
 // Microsoft Visual C++ generated include file.
 // Used by Discord.rc
 //
-#define IDD_DISCORD_DIALOG              102
-#define IDS_APP_TITLE                   103
-#define IDI_DISCORD                     107
-#define IDC_DISCORD                     109
-#define IDR_MAINFRAME                   128
-#define IDC_STATIC                      -1
+#define IDS_APP_TITLE                   101
+#define IDC_DISCORD                     102
+#define IDI_DISCORD                     103
 
 // Next default values for new objects
 // 

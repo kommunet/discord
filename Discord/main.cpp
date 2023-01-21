@@ -12,14 +12,12 @@ TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
 
 // Forward declarations of functions included in this code module:
-ATOM				RegisterWindowClass(HINSTANCE hInstance);
-BOOL				InitInstance(HINSTANCE, int);
-LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
+ATOM			 RegisterWindowClass(HINSTANCE hInstance);
+BOOL			 InitInstance(HINSTANCE, int);
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-int APIENTRY _tWinMain(HINSTANCE hInstance,
-                     HINSTANCE hPrevInstance,
-                     LPTSTR    lpCmdLine,
-                     int       nCmdShow)
+int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, 
+					   LPTSTR lpCmdLine, int nCmdShow)
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
