@@ -52,7 +52,7 @@ END
 // Bitmap
 //
 
-IDB_LOGO_SMALL          BITMAP                  "discordlogosmall.bmp"
+IDB_LOGIN_BKG           BITMAP                  "background.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -61,7 +61,6 @@ IDB_LOGO_SMALL          BITMAP                  "discordlogosmall.bmp"
 
 STRINGTABLE 
 BEGIN
-    IDS_APP_TITLE           "Discord Messenger"
     IDC_DISCORD             "DISCORD"
 END
 

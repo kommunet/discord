@@ -3,11 +3,11 @@
 // Used by Discord.rc
 //
 #define IDI_DISCORD                     101
-
-// Used by DiscordResources.rc
 #define IDS_APP_TITLE                   101
-#define IDC_DISCORD                     102
-#define IDB_LOGO_SMALL                  103
+#define IDC_DISCORD                     101
+#define IDB_LOGIN_BKG                   102
+#define IDS_DLL_FILENAME                102
+#define IDS_DLL_LOADFAIL                103
 
 // Next default values for new objects
 // 

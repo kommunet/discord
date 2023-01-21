@@ -19,16 +19,24 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	hResDLL = LoadLibraryEx(_T("DiscordResources.dll"), NULL, LOAD_LIBRARY_AS_DATAFILE);
+	TCHAR szDLLName[MAX_LOADSTRING];
+
+	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+	LoadString(hInstance, IDS_DLL_FILENAME, szDLLName, MAX_LOADSTRING);
+
+	hResDLL = LoadLibraryEx(szDLLName, NULL, LOAD_LIBRARY_AS_DATAFILE);
+
 	if (hResDLL == NULL)
 	{
-		MessageBox(NULL, _T("Unable to load resource DLL!"), _T("Discord Messenger"), MB_OK | MB_ICONERROR);
+		TCHAR szDLLFail[MAX_LOADSTRING];
+		LoadString(hInstance, IDS_DLL_LOADFAIL, szDLLFail, MAX_LOADSTRING);
+
+		MessageBox(NULL, szDLLFail, szTitle, MB_OK | MB_ICONERROR);
 		return 1;
 	}
-
-	LoadString(hResDLL, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadString(hResDLL, IDC_DISCORD, szWindowClass, MAX_LOADSTRING);
 	
+	LoadString(hResDLL, IDC_DISCORD, szWindowClass, MAX_LOADSTRING);
+
 	RegisterWindowClass(hInstance);
 
 	if (!InitInstance(hInstance, nCmdShow))
@@ -43,6 +51,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	}
 
 	FreeLibrary(hResDLL);
+
 	return (int) msg.wParam;
 }
 
@@ -57,7 +66,7 @@ ATOM RegisterWindowClass(HINSTANCE hInstance)
 	wcex.hInstance		= hInstance;
 	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_DISCORD));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
-	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
+	wcex.hbrBackground	= NULL;
 	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_DISCORD);
 	wcex.lpszClassName	= szWindowClass;
 
@@ -70,8 +79,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    hInst = hInstance;
 
-   hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, CW_USEDEFAULT, 372, 676, NULL, NULL, hInstance, NULL);
+   hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
+      CW_USEDEFAULT, CW_USEDEFAULT, 383, 693, NULL, NULL, hInstance, NULL);
 
    if (!hWnd)
    {
@@ -84,28 +93,48 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
+HBITMAP hLoginBkg;
+BITMAP loginBkg;
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	PAINTSTRUCT ps;
-	HDC hdc;
-
+	HDC hdc, bkgHdc;
+	
 	switch (message)
 	{
 	case WM_DESTROY:
+		DeleteObject(hLoginBkg);
+
 		PostQuitMessage(0);
-		break;
+
+		return 0;
 
 	case WM_CREATE:
-		break;
+		hLoginBkg = LoadBitmap(hResDLL, MAKEINTRESOURCE(IDB_LOGIN_BKG));
+		GetObject(hLoginBkg, sizeof(BITMAP), &loginBkg);
+
+		return 0;
+
+	case WM_ERASEBKGND:
+		hdc = (HDC)wParam;
+
+		bkgHdc = CreateCompatibleDC(hdc);
+
+		SelectObject(bkgHdc, hLoginBkg);
+		BitBlt(hdc, 0, 0, loginBkg.bmWidth, loginBkg.bmHeight, bkgHdc, 0, 0, SRCCOPY);
+
+		DeleteDC(bkgHdc);
+
+		return 1;
 
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps); 
-
 		EndPaint(hWnd, &ps); 
-		break;
 
-	default:
-		return DefWindowProc(hWnd, message, wParam, lParam);
+		return 0;
+
 	}
-	return 0;
+
+	return DefWindowProc(hWnd, message, wParam, lParam);
 }

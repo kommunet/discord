@@ -59,6 +59,19 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "Discord Messenger"
+    IDS_DLL_FILENAME        "DiscordResources.dll"
+    IDS_DLL_LOADFAIL        "Unable to load resource DLL!"
+END
+
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
