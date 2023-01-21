@@ -62,6 +62,7 @@ IDB_LOGIN_BKG           BITMAP                  "discord_default.bmp"
 STRINGTABLE 
 BEGIN
     IDC_DISCORD             "DISCORD"
+    IDS_EMAIL               "E-mail Address:"
 END
 
 #endif    // English (U.S.) resources

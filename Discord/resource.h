@@ -7,8 +7,8 @@
 #define IDB_LOGIN_BKG                   102
 #define IDS_DLL_FILENAME                102
 #define IDS_DLL_LOADFAIL                103
-#define IDI_DISCORD2                    130
 #define IDI_DISCORD                     130
+#define IDS_EMAIL                       102
 
 // Next default values for new objects
 // 

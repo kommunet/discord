@@ -92,19 +92,32 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 }
 
 HBITMAP hLoginBkg;
+HBRUSH hBkgBrush;
 BITMAP loginBkg;
+
+HWND hEmail;
+HFONT hmFont;
+TCHAR szEmailTitle[MAX_LOADSTRING];
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	PAINTSTRUCT ps;
 	HDC hdc, bkgHdc;
+
+	long lhMain;
 	
 	switch (message)
 	{
 	case WM_DESTROY:
+		// free resources as not to make leaks happen
 		DeleteObject(hLoginBkg);
+		DeleteObject(hmFont);
+		DeleteObject(hBkgBrush);
+
+		// free the resource DLL
 		FreeLibrary(hResDLL);
 
+		// farewell!
 		PostQuitMessage(0);
 
 		return 0;
@@ -113,7 +126,32 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		hLoginBkg = LoadBitmap(hResDLL, MAKEINTRESOURCE(IDB_LOGIN_BKG));
 		GetObject(hLoginBkg, sizeof(BITMAP), &loginBkg);
 
+		hBkgBrush = CreatePatternBrush(hLoginBkg);
+
+		hdc = GetDC(NULL);
+		lhMain = -MulDiv(10, GetDeviceCaps(hdc, LOGPIXELSY), 72);
+		ReleaseDC(NULL, hdc);
+
+		hmFont = CreateFont(lhMain, 0, 0, 0, 0, FALSE, FALSE, FALSE, 0, 0, 0, 0, 0, _T("Tahoma"));
+
+		// E-mail address
+		LoadString(hResDLL, IDS_EMAIL, szEmailTitle, MAX_LOADSTRING);
+
+		hEmail = CreateWindowExW(NULL, _T("STATIC"), szEmailTitle, WS_VISIBLE | WS_CHILD | SS_LEFT, 60, 175, 275, 20, hWnd, NULL, hInst, NULL);
+		SendMessage(hEmail, WM_SETFONT, (WPARAM)hmFont, FALSE);
+		
 		return 0;
+
+	case WM_CTLCOLORSTATIC:
+		if (hEmail == (HWND)lParam) 
+		{
+			hdc = (HDC)wParam;
+			SetBkMode(hdc, TRANSPARENT);
+
+			return (INT_PTR)hBkgBrush;
+		}
+
+		break;
 
 	case WM_ERASEBKGND:
 		hdc = (HDC)wParam;
@@ -129,6 +167,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps); 
+
 		EndPaint(hWnd, &ps); 
 
 		return 0;
