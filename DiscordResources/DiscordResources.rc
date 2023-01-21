@@ -52,7 +52,7 @@ END
 // Bitmap
 //
 
-IDB_LOGO_SMALL          BITMAP                  "C:\\Users\\subpu\\OneDrive\\Pictures\\discord\\discord small2.bmp"
+IDB_LOGO_SMALL          BITMAP                  "discordlogosmall.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
