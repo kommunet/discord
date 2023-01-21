@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Discord", "Discord\Discord.vcproj", "{E572EDCE-3CAC-43AE-93E0-38971D376379}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Discord", "Discord\Discord.vcproj", "{10AC73B9-A8FD-4A9D-A9B9-448B8BAF9C33}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
@@ -13,10 +13,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E572EDCE-3CAC-43AE-93E0-38971D376379}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E572EDCE-3CAC-43AE-93E0-38971D376379}.Debug|Win32.Build.0 = Debug|Win32
-		{E572EDCE-3CAC-43AE-93E0-38971D376379}.Release|Win32.ActiveCfg = Release|Win32
-		{E572EDCE-3CAC-43AE-93E0-38971D376379}.Release|Win32.Build.0 = Release|Win32
+		{10AC73B9-A8FD-4A9D-A9B9-448B8BAF9C33}.Debug|Win32.ActiveCfg = Debug|Win32
+		{10AC73B9-A8FD-4A9D-A9B9-448B8BAF9C33}.Debug|Win32.Build.0 = Debug|Win32
+		{10AC73B9-A8FD-4A9D-A9B9-448B8BAF9C33}.Release|Win32.ActiveCfg = Release|Win32
+		{10AC73B9-A8FD-4A9D-A9B9-448B8BAF9C33}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
