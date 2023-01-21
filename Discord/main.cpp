@@ -1,19 +1,16 @@
-// main.cpp : Defines the entry point for the application.
-//
-
 #include "stdafx.h"
 #include "resource.h"
 
 #define MAX_LOADSTRING 100
 
-// Global Variables:
-HINSTANCE hInst;								// current instance
-TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
-TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
+HINSTANCE hInst;
+HMODULE hResDLL;
 
-// Forward declarations of functions included in this code module:
-ATOM			 RegisterWindowClass(HINSTANCE hInstance);
-BOOL			 InitInstance(HINSTANCE, int);
+TCHAR szTitle[MAX_LOADSTRING];
+TCHAR szWindowClass[MAX_LOADSTRING];
+
+ATOM RegisterWindowClass(HINSTANCE hInstance);
+BOOL InitInstance(HINSTANCE, int);
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, 
@@ -22,20 +19,21 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	// Initialize global strings
-	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadString(hInstance, IDC_DISCORD, szWindowClass, MAX_LOADSTRING);
+	hResDLL = LoadLibraryEx(_T("DiscordResources.dll"), NULL, LOAD_LIBRARY_AS_DATAFILE);
+	if (hResDLL == NULL)
+	{
+		MessageBox(NULL, _T("Unable to load resource DLL!"), _T("Discord Messenger"), MB_OK | MB_ICONERROR);
+		return 1;
+	}
+
+	LoadString(hResDLL, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+	LoadString(hResDLL, IDC_DISCORD, szWindowClass, MAX_LOADSTRING);
 	
 	RegisterWindowClass(hInstance);
 
-	// Perform application initialization:
-	if (!InitInstance (hInstance, nCmdShow))
-	{
+	if (!InitInstance(hInstance, nCmdShow))
 		return FALSE;
-	}
 
-	// Main message loop:
-	
 	MSG msg;
 
 	while (GetMessage(&msg, NULL, 0, 0))
@@ -44,24 +42,10 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		DispatchMessage(&msg);
 	}
 
+	FreeLibrary(hResDLL);
 	return (int) msg.wParam;
 }
 
-
-
-//
-//  FUNCTION: MyRegisterClass()
-//
-//  PURPOSE: Registers the window class.
-//
-//  COMMENTS:
-//
-//    This function and its usage are only necessary if you want this code
-//    to be compatible with Win32 systems prior to the 'RegisterClassEx'
-//    function that was added to Windows 95. It is important to call this function
-//    so that the application will get 'well formed' small icons associated
-//    with it.
-//
 ATOM RegisterWindowClass(HINSTANCE hInstance)
 {
 	WNDCLASS wcex;
@@ -80,21 +64,11 @@ ATOM RegisterWindowClass(HINSTANCE hInstance)
 	return RegisterClass(&wcex);
 }
 
-//
-//   FUNCTION: InitInstance(HINSTANCE, int)
-//
-//   PURPOSE: Saves instance handle and creates main window
-//
-//   COMMENTS:
-//
-//        In this function, we save the instance handle in a global variable and
-//        create and display the main program window.
-//
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    HWND hWnd;
 
-   hInst = hInstance; // Store instance handle in our global variable
+   hInst = hInstance;
 
    hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, CW_USEDEFAULT, 372, 676, NULL, NULL, hInstance, NULL);
@@ -110,21 +84,26 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-//
-//  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
-//
-//  PURPOSE:  Processes messages for the main window.
-//
-//  WM_DESTROY	- post a quit message and return
-//
-//
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	PAINTSTRUCT ps;
+	HDC hdc;
+
 	switch (message)
 	{
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+
+	case WM_CREATE:
+		break;
+
+	case WM_PAINT:
+		hdc = BeginPaint(hWnd, &ps); 
+
+		EndPaint(hWnd, &ps); 
+		break;
+
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}

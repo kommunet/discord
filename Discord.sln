@@ -7,6 +7,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Discord", "Discord\Discord.
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiscordResources", "DiscordResources\DiscordResources.vcproj", "{EC60E2E6-4603-4F57-96C1-F68FCD29EF24}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -17,6 +23,10 @@ Global
 		{10AC73B9-A8FD-4A9D-A9B9-448B8BAF9C33}.Debug|Win32.Build.0 = Debug|Win32
 		{10AC73B9-A8FD-4A9D-A9B9-448B8BAF9C33}.Release|Win32.ActiveCfg = Release|Win32
 		{10AC73B9-A8FD-4A9D-A9B9-448B8BAF9C33}.Release|Win32.Build.0 = Release|Win32
+		{EC60E2E6-4603-4F57-96C1-F68FCD29EF24}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EC60E2E6-4603-4F57-96C1-F68FCD29EF24}.Debug|Win32.Build.0 = Debug|Win32
+		{EC60E2E6-4603-4F57-96C1-F68FCD29EF24}.Release|Win32.ActiveCfg = Release|Win32
+		{EC60E2E6-4603-4F57-96C1-F68FCD29EF24}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
