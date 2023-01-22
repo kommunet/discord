@@ -5,6 +5,7 @@
 #define IDC_DISCORD                     101
 #define IDB_LOGIN_BKG                   102
 #define IDS_EMAIL                       102
+#define IDS_PASSWORD                    103
 
 // Next default values for new objects
 // 

@@ -63,6 +63,7 @@ STRINGTABLE
 BEGIN
     IDC_DISCORD             "DISCORD"
     IDS_EMAIL               "E-mail Address:"
+    IDS_PASSWORD            "Password:"
 END
 
 #endif    // English (U.S.) resources

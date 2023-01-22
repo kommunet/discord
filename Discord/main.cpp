@@ -95,9 +95,12 @@ HBITMAP hLoginBkg;
 HBRUSH hBkgBrush;
 BITMAP loginBkg;
 
-HWND hEmail;
+HWND hEmailTitle, hEmailBox;
+HWND hPasswordTitle, hPasswordBox;
+
 HFONT hmFont;
 TCHAR szEmailTitle[MAX_LOADSTRING];
+TCHAR szPasswordTitle[MAX_LOADSTRING];
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -134,16 +137,32 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		hmFont = CreateFont(lhMain, 0, 0, 0, 0, FALSE, FALSE, FALSE, 0, 0, 0, 0, 0, _T("Tahoma"));
 
-		// E-mail address
 		LoadString(hResDLL, IDS_EMAIL, szEmailTitle, MAX_LOADSTRING);
+		LoadString(hResDLL, IDS_PASSWORD, szPasswordTitle, MAX_LOADSTRING);
 
-		hEmail = CreateWindowExW(NULL, _T("STATIC"), szEmailTitle, WS_VISIBLE | WS_CHILD | SS_LEFT, 60, 175, 275, 20, hWnd, NULL, hInst, NULL);
-		SendMessage(hEmail, WM_SETFONT, (WPARAM)hmFont, FALSE);
+		// CreateWindow(lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam)
+
+		// E-mail address
+		hEmailTitle = CreateWindow(_T("STATIC"), szEmailTitle, WS_VISIBLE | WS_CHILD | SS_LEFT, 60, 175, 275, 20, hWnd, NULL, hInst, NULL);
+		SendMessage(hEmailTitle, WM_SETFONT, (WPARAM)hmFont, FALSE);
+		
+		// E-mail box
+		hEmailBox = CreateWindow(_T("EDIT"), NULL, WS_BORDER | WS_CHILD | WS_VISIBLE | ES_LEFT | ES_AUTOHSCROLL, 60, 195, 275, 20, hWnd, NULL, hInst, NULL); 
+		SendMessage(hEmailBox, WM_SETFONT, (WPARAM)hmFont, FALSE);
+
+		// Password
+		hPasswordTitle = CreateWindow(_T("STATIC"), szPasswordTitle, WS_VISIBLE | WS_CHILD | SS_LEFT, 60, 235, 275, 20, hWnd, NULL, hInst, NULL);
+		SendMessage(hPasswordTitle, WM_SETFONT, (WPARAM)hmFont, FALSE);
+
+		// Password box
+		hPasswordBox = CreateWindow(_T("EDIT"), NULL, WS_BORDER | WS_CHILD | WS_VISIBLE | ES_LEFT | ES_AUTOHSCROLL | ES_PASSWORD, 60, 255, 275, 20, hWnd, NULL, hInst, NULL);
+		SendMessage(hPasswordBox, WM_SETFONT, (WPARAM)hmFont, FALSE);
 		
 		return 0;
 
 	case WM_CTLCOLORSTATIC:
-		if (hEmail == (HWND)lParam) 
+		if (hEmailTitle == (HWND)lParam 
+		||  hPasswordTitle == (HWND)lParam) 
 		{
 			hdc = (HDC)wParam;
 			SetBkMode(hdc, TRANSPARENT);
