@@ -54,7 +54,7 @@ END
 
 IDB_LOGIN_BKG           BITMAP                  "discord_default.bmp"
 IDB_LOGIN_HELP          BITMAP                  "24bit.bmp"
-IDB_LOGIN_HELPHOVER     BITMAP                  "login_he.bmp"
+IDB_LOGIN_HELPHOVER     BITMAP                  "24bit-hover.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

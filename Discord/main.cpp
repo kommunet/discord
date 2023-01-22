@@ -202,7 +202,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		SendMessage(hCopyrightTitle, WM_SETFONT, (WPARAM)hmFont, FALSE);
 
 		// Help
-		hHelpBtn = CreateWindow(_T("STATIC"), NULL, WS_VISIBLE | WS_CHILD | SS_NOTIFY | SS_BITMAP, 330, 630, 29, 29, hWnd, NULL, hInst, NULL);
+		hHelpBtn = CreateWindow(_T("STATIC"), NULL, WS_VISIBLE | WS_CHILD | SS_NOTIFY | SS_BITMAP, 336, 628, 29, 29, hWnd, NULL, hInst, NULL);
 		SendMessage(hHelpBtn, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hLoginHlp);
 
 		return 0;

@@ -212,14 +212,6 @@
 				RelativePath=".\DiscordResources.rc"
 				>
 			</File>
-			<File
-				RelativePath="..\..\OneDrive\Pictures\discord\help 2.bmp"
-				>
-			</File>
-			<File
-				RelativePath=".\login_he.bmp"
-				>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>
