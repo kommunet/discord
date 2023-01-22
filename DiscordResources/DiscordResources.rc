@@ -53,6 +53,8 @@ END
 //
 
 IDB_LOGIN_BKG           BITMAP                  "discord_default.bmp"
+IDB_LOGIN_HELP          BITMAP                  "24bit.bmp"
+IDB_LOGIN_HELPHOVER     BITMAP                  "login_he.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -64,6 +66,10 @@ BEGIN
     IDC_DISCORD             "DISCORD"
     IDS_EMAIL               "E-mail Address:"
     IDS_PASSWORD            "Password:"
+    IDS_SIGNIN              "Sign-in"
+    IDS_FORGOTPASS          "Forgot password?"
+    IDS_NEW                 "New to Discord?"
+    IDS_COPYRIGHT           "Copyright © 2003-2006 Discord Technologies Ltd"
 END
 
 #endif    // English (U.S.) resources

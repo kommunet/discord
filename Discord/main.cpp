@@ -19,6 +19,11 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
+	INITCOMMONCONTROLSEX icc;
+	icc.dwSize = sizeof(icc);
+	icc.dwICC = ICC_WIN95_CLASSES;
+	InitCommonControlsEx(&icc);
+	
 	TCHAR szDLLName[MAX_LOADSTRING];
 
 	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -91,20 +96,32 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-HBITMAP hLoginBkg;
+HBITMAP hLoginBkg, hLoginHlp;
 HBRUSH hBkgBrush;
 BITMAP loginBkg;
 
-HWND hEmailTitle, hEmailBox;
-HWND hPasswordTitle, hPasswordBox;
-
 HFONT hmFont;
+
 TCHAR szEmailTitle[MAX_LOADSTRING];
 TCHAR szPasswordTitle[MAX_LOADSTRING];
+TCHAR szSignInTitle[MAX_LOADSTRING];
+
+TCHAR szForgotPassTitle[MAX_LOADSTRING];
+TCHAR szNewTitle[MAX_LOADSTRING];
+TCHAR szForgotPassLink[MAX_LOADSTRING];
+TCHAR szNewLink[MAX_LOADSTRING];
+
+TCHAR szCopyrightTitle[MAX_LOADSTRING];
+
+HWND hEmailTitle, hEmailBox;
+HWND hPasswordTitle, hPasswordBox;
+HWND hSignInBtn;
+HWND hForgotPassLink, hNewLink;
+HWND hCopyrightTitle;
+HWND hHelpBtn;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	PAINTSTRUCT ps;
 	HDC hdc, bkgHdc;
 
 	long lhMain;
@@ -114,6 +131,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		// free resources as not to make leaks happen
 		DeleteObject(hLoginBkg);
+		DeleteObject(hLoginHlp);
 		DeleteObject(hmFont);
 		DeleteObject(hBkgBrush);
 
@@ -127,8 +145,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case WM_CREATE:
 		hLoginBkg = LoadBitmap(hResDLL, MAKEINTRESOURCE(IDB_LOGIN_BKG));
-		GetObject(hLoginBkg, sizeof(BITMAP), &loginBkg);
+		hLoginHlp = LoadBitmap(hResDLL, MAKEINTRESOURCE(IDB_LOGIN_HELP));
 
+		GetObject(hLoginBkg, sizeof(BITMAP), &loginBkg);
+		
 		hBkgBrush = CreatePatternBrush(hLoginBkg);
 
 		hdc = GetDC(NULL);
@@ -139,6 +159,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		LoadString(hResDLL, IDS_EMAIL, szEmailTitle, MAX_LOADSTRING);
 		LoadString(hResDLL, IDS_PASSWORD, szPasswordTitle, MAX_LOADSTRING);
+		LoadString(hResDLL, IDS_SIGNIN, szSignInTitle, MAX_LOADSTRING);
+		LoadString(hResDLL, IDS_FORGOTPASS, szForgotPassTitle, MAX_LOADSTRING);
+		LoadString(hResDLL, IDS_NEW, szNewTitle, MAX_LOADSTRING);
+		LoadString(hResDLL, IDS_COPYRIGHT, szCopyrightTitle, MAX_LOADSTRING);
+
+		_stprintf_s(szForgotPassLink, MAX_LOADSTRING, _T("<a>%s</a>"), szForgotPassTitle);
+		_stprintf_s(szNewLink, MAX_LOADSTRING, _T("<a>%s</a>"), szNewTitle);
 
 		// CreateWindow(lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam)
 
@@ -158,16 +185,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		hPasswordBox = CreateWindow(_T("EDIT"), NULL, WS_BORDER | WS_CHILD | WS_VISIBLE | ES_LEFT | ES_AUTOHSCROLL | ES_PASSWORD, 60, 255, 275, 20, hWnd, NULL, hInst, NULL);
 		SendMessage(hPasswordBox, WM_SETFONT, (WPARAM)hmFont, FALSE);
 		
+		// Sign in button
+		hSignInBtn = CreateWindow(_T("BUTTON"), szSignInTitle, WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON, 145, 305, 85, 25, hWnd, NULL, hInst, NULL);
+		SendMessage(hSignInBtn, WM_SETFONT, (WPARAM)hmFont, FALSE);
+
+		// Forgot password link
+		hForgotPassLink = CreateWindow(WC_LINK, szForgotPassLink, WS_VISIBLE | WS_CHILD | LWS_TRANSPARENT, 135, 350, 110, 20, hWnd, NULL, hInst, NULL);
+		SendMessage(hForgotPassLink, WM_SETFONT, (WPARAM)hmFont, FALSE);
+
+		// New to discord link
+		hNewLink = CreateWindow(WC_LINK, szNewLink, WS_VISIBLE | WS_CHILD | LWS_TRANSPARENT, 140, 375, 100, 20, hWnd, NULL, hInst, NULL);
+		SendMessage(hNewLink, WM_SETFONT, (WPARAM)hmFont, FALSE);
+
+		// Copyright 
+		hCopyrightTitle = CreateWindow(_T("STATIC"), szCopyrightTitle, WS_VISIBLE | WS_CHILD | SS_LEFT, 15, 635, 285, 20, hWnd, NULL, hInst, NULL);
+		SendMessage(hCopyrightTitle, WM_SETFONT, (WPARAM)hmFont, FALSE);
+
+		// Help
+		hHelpBtn = CreateWindow(_T("STATIC"), NULL, WS_VISIBLE | WS_CHILD | SS_NOTIFY | SS_BITMAP, 330, 630, 29, 29, hWnd, NULL, hInst, NULL);
+		SendMessage(hHelpBtn, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hLoginHlp);
+
 		return 0;
 
 	case WM_CTLCOLORSTATIC:
 		if (hEmailTitle == (HWND)lParam 
-		||  hPasswordTitle == (HWND)lParam) 
+		 || hPasswordTitle == (HWND)lParam 
+		 || hCopyrightTitle == (HWND)lParam)
 		{
 			hdc = (HDC)wParam;
 			SetBkMode(hdc, TRANSPARENT);
 
-			return (INT_PTR)hBkgBrush;
+			if (hCopyrightTitle == (HWND)lParam)
+				SetTextColor(hdc, RGB(128, 128, 128));
+
+			return (INT_PTR)GetStockObject(HOLLOW_BRUSH);
 		}
 
 		break;
@@ -183,13 +234,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		DeleteDC(bkgHdc);
 
 		return 1;
-
-	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps); 
-
-		EndPaint(hWnd, &ps); 
-
-		return 0;
 
 	}
 

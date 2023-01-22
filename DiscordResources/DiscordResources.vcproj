@@ -193,6 +193,14 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
+				RelativePath=".\24bit-hover.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\24bit.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\discord_default.bmp"
 				>
 			</File>
@@ -202,6 +210,14 @@
 			</File>
 			<File
 				RelativePath=".\DiscordResources.rc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\OneDrive\Pictures\discord\help 2.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\login_he.bmp"
 				>
 			</File>
 		</Filter>

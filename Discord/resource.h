@@ -10,6 +10,12 @@
 #define IDI_DISCORD                     130
 #define IDS_EMAIL                       102
 #define IDS_PASSWORD                    103
+#define IDS_SIGNIN                      104
+#define IDS_FORGOTPASS                  105
+#define IDS_NEW                         106
+#define IDS_COPYRIGHT                   107
+#define IDB_LOGIN_HELP                  108
+#define IDB_LOGIN_HELPHOVER             109
 
 // Next default values for new objects
 // 
