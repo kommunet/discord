@@ -14,3 +14,5 @@ C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\discord.csproj.Generat
 C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\discord.csproj.CoreCompileInputs.cache
 C:\Users\lukea\Documents\discord\DiscordClassic\bin\Debug\resources\audio\dsound_con.wav
 C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\DiscordClassic_Content.g.cs
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\ChatWindow.g.cs
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\ChatWindow.baml

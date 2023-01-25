@@ -9,26 +9,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Media;
 
 namespace DiscordClassic
 {
-    public partial class WelcomeWindow : Window
+    /// <summary>
+    /// Interaction logic for ChatWindow.xaml
+    /// </summary>
+    public partial class ChatWindow : Window
     {
-        public WelcomeWindow()
+        public ChatWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new SoundPlayer(@"resources/audio/dsound_con.wav").Play();
-
-            new ChatWindow().Show();
-
-            Close();
         }
     }
 }
