@@ -1,0 +1,16 @@
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic.csproj.AssemblyReference.cache
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\MainWindow.g.cs
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\App.g.cs
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic_MarkupCompile.cache
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic_MarkupCompile.lref
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\bin\Debug\DiscordClassic.exe
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\bin\Debug\DiscordClassic.pdb
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\MainWindow.baml
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic.g.resources
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic.Properties.Resources.resources
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic.csproj.GenerateResource.cache
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic.csproj.CoreCompileInputs.cache
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic.exe
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\DiscordClassic.pdb
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\WelcomeWindow.g.cs
+C:\Users\lukea\Documents\DiscordClassic\DiscordClassic\obj\Debug\WelcomeWindow.baml
