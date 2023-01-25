@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Media;
 
 namespace DiscordClassic
 {
@@ -23,8 +24,11 @@ namespace DiscordClassic
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            SoundPlayer player = new SoundPlayer(@"resources/audio/dsound_con.wav");
+            player.Load(); player.PlaySync();
+
+            // MainWindow mainWindow = new MainWindow();
+            // mainWindow.Show();
 
             Close();
         }

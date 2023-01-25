@@ -1,0 +1,16 @@
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\discord.csproj.AssemblyReference.cache
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\DiscordClassic.exe
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\DiscordClassic.pdb
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\WelcomeWindow.g.cs
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\App.g.cs
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\DiscordClassic_MarkupCompile.cache
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\DiscordClassic_MarkupCompile.lref
+C:\Users\lukea\Documents\discord\DiscordClassic\bin\Debug\DiscordClassic.exe
+C:\Users\lukea\Documents\discord\DiscordClassic\bin\Debug\DiscordClassic.pdb
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\WelcomeWindow.baml
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\DiscordClassic.g.resources
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\DiscordClassic.Properties.Resources.resources
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\discord.csproj.GenerateResource.cache
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\discord.csproj.CoreCompileInputs.cache
+C:\Users\lukea\Documents\discord\DiscordClassic\bin\Debug\resources\audio\dsound_con.wav
+C:\Users\lukea\Documents\discord\DiscordClassic\obj\Debug\DiscordClassic_Content.g.cs
